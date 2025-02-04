@@ -17,6 +17,7 @@ export default function Home() {
   };
 
 const sendData = () => {
+  console.log(storedImage);  // Add this to check if it's a valid base64 string
   fetch('https://image-prediction-nl1a.onrender.com/upload-image', {
     method: 'POST',
     headers: {
@@ -24,15 +25,16 @@ const sendData = () => {
     },
     body: JSON.stringify({ image: storedImage })
   })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      const message = data.message;
-      const predictedClass = data.predicted_class;
-      alert(`${message}\nPredicted Class: ${predictedClass}`);
-    })
-    .catch(error => console.error('Error:', error));
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    const message = data.message;
+    const predictedClass = data.predicted_class;
+    alert(`${message}\nPredicted Class: ${predictedClass}`);
+  })
+  .catch(error => console.error('Error:', error));
 };
+
 
 
 
