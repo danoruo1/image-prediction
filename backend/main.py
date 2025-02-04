@@ -75,7 +75,11 @@ def predict_image_from_base64(base64_string):
         try:
             image = Image.open(BytesIO(img_data))
             image.verify()  # Verify if the image is valid
-            
+
+            # Check for format compatibility (PIL should handle most formats)
+            if image.format not in ['WEBP', 'PNG', 'JPEG', 'GIF']:
+                return {"error": f"Unsupported image format: {image.format}"}
+
         except UnidentifiedImageError:
             return {"error": "Unable to identify image from the base64 data."}
         
@@ -92,7 +96,7 @@ def predict_image_from_base64(base64_string):
         return {"error": "Invalid base64 string"}
     except Exception as e:
         return {"error": f"Unexpected error: {e}"}
-
+        
 app = FastAPI()
 
 # Add CORS middleware to allow cross-origin requests
