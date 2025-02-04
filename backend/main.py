@@ -86,7 +86,7 @@ def predict_image_from_base64(base64_string):
         with torch.no_grad():
             pred = model(image)
             predicted_class = classes[pred.argmax(1).item()]
-        
+        print(predicted_class)
         return predicted_class
     
     except (ValueError, TypeError) as e:
