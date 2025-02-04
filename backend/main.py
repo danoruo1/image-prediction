@@ -100,10 +100,10 @@ class ImageData(BaseModel):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins, or specify your frontend URL here (e.g., ["http://localhost:3000"])
+    allow_origins=["https://your-frontend.vercel.app"],  # Or use ["*"] to allow all origins (not recommended for production)
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.post("/upload-image")
