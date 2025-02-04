@@ -108,6 +108,7 @@ app.add_middleware(
 
 @app.post("/upload-image")
 def upload_image(data: ImageData):
+    print("Working")
     # Get the base64 string from the incoming data
     base64_string = data.image
     
