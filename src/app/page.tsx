@@ -31,19 +31,16 @@ const sendData = () => {
       return response.json();
     })
     .then(data => {
-      console.log(data);
+      console.log(data); // This will log the object
       const message = data.message;
       const predictedClass = data.predicted_class;
-      alert(`${message}\nPredicted Class: ${predictedClass}`);
+      alert(`${message}\nPredicted Class: ${predictedClass}\n\nFull Response: ${JSON.stringify(data)}`);
     })
     .catch(error => {
       console.error('Error:', error);
       alert('There was an issue with your request. Please try again.');
     });
 };
-
-
-
 
 
 
