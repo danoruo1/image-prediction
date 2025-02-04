@@ -17,7 +17,6 @@ export default function Home() {
   };
 
 const sendData = () => {
-  console.log(storedImage);  // Add this to check if it's a valid base64 string
   fetch('https://image-prediction-nl1a.onrender.com/upload-image', {
     method: 'POST',
     headers: {
