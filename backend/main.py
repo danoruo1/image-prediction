@@ -102,7 +102,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://image-prediction.vercel.app"],  # Or use ["*"] to allow all origins (not recommended for production)
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"],  # Allow these methods
     allow_headers=["*"],
 )
 
