@@ -16,24 +16,24 @@ export default function Home() {
     setIsVisible((prev) => !prev);
   };
 
-  const sendData = () => {
-    fetch('http://127.0.0.1:8000/upload-image', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ image: storedImage })  // Ensure you're wrapping image in an object
-    })
+const sendData = () => {
+  fetch('https://image-prediction-nl1a.onrender.com/upload-image', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ image: storedImage })
+  })
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      // You can display the message and predicted class here
       const message = data.message;
       const predictedClass = data.predicted_class;
       alert(`${message}\nPredicted Class: ${predictedClass}`);
-  })
+    })
     .catch(error => console.error('Error:', error));
-  };
+};
+
 
 
 
