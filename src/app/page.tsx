@@ -24,15 +24,24 @@ const sendData = () => {
     },
     body: JSON.stringify({ image: storedImage })
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    const message = data.message;
-    const predictedClass = data.predicted_class;
-    alert(`${message}\nPredicted Class: ${predictedClass}`);
-  })
-  .catch(error => console.error('Error:', error));
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      const message = data.message;
+      const predictedClass = data.predicted_class;
+      alert(`${message}\nPredicted Class: ${predictedClass}`);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('There was an issue with your request. Please try again.');
+    });
 };
+
 
 
 
