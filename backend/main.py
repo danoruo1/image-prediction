@@ -100,7 +100,7 @@ class ImageData(BaseModel):
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://image-prediction.vercel.app/"],  # Or use ["*"] to allow all origins (not recommended for production)
+    allow_origins=["https://image-prediction.vercel.app"],  # Or use ["*"] to allow all origins (not recommended for production)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
