@@ -86,7 +86,6 @@ def predict_image_from_base64(base64_string):
         with torch.no_grad():
             pred = model(image)
             predicted_class = classes[pred.argmax(1).item()]
-        print(predicted_class)
         return predicted_class
     
     except (ValueError, TypeError) as e:
@@ -110,13 +109,13 @@ app.add_middleware(
 
 @app.post("/upload-image")
 def upload_image(data: ImageData):
-    print("Working")
     # Get the base64 string from the incoming data
     base64_string = data.image
     
     # Use the predict function to get the predicted class
     predicted_class = predict_image_from_base64(base64_string)
     # Return the prediction result along with a success message
+    print(predicted_class)
     return {"message": "Image received successfully", "predicted_class": predicted_class}
 
 # Update the Uvicorn run command to bind to the environment's PORT variable
