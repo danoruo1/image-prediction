@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,6 +10,7 @@ from PIL import Image, UnidentifiedImageError
 import base64
 import re
 from io import BytesIO
+import uvicorn
 
 # Define the Neural Network (same as before)
 class NeuralNetwork(nn.Module):
@@ -116,3 +118,8 @@ def upload_image(data: ImageData):
     predicted_class = predict_image_from_base64(base64_string)
     # Return the prediction result along with a success message
     return {"message": "Image received successfully", "predicted_class": predicted_class}
+
+# Update the Uvicorn run command to bind to the environment's PORT variable
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Default to 8000 if no PORT environment variable is set
+    uvicorn.run(app, host="0.0.0.0", port=port)
